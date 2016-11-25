@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Check for VIRTUAL_HOST variable and exit if not provided
-if [[ -z "${VIRTUAL_HOST}" ]]; then
+if [ -z "${VIRTUAL_HOST}" ]; then
   echo "Error: VIRTUAL_HOST environment variable is not set." 1>&2
   exit 1
 fi
