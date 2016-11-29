@@ -1,9 +1,11 @@
 # openlmis-nginx
-Provides service routing and serves as an API Gateway in OpenLMIS environment.
+Provides dynamic routing and serves as an API Gateway in OpenLMIS environment.
 
-This image is based off official nginx image, additionally providing integration with [Consul](https://www.consul.io/), that serves as a service registry in OpenLMIS environment. Contacting Consul and retrieving it's achieved with [Consul Template](https://github.com/hashicorp/consul-template).
+This image is based off of the official nginx image, additionally it provides integration with [Consul](https://www.consul.io/) which serves as a Service Registry for OpenLMIS deployments. [Consul Template](https://github.com/hashicorp/consul-template) is included in this image to be able to work with an external Consul to re-configure Nginx routing based on the Service's registered there.
 
-After each change to Consul's service registry, the container reconfigures route settings to match newest registry state. All services that are tagged with `SERVICE_TAG` are defined as upstreams. Importantly, it also requires a path-service mapping in Consul's Key-Value store (more details in [Path Mapping](#path-mapping) section) to define routes.
+As Services register themselves with Consul (service registry) directly.  As these registration's occur, this container's Consul Template watches for those changes and reconfigures the routing of the bundled Nginx to match these changes.  This allows Nginx to dynamically route client HTTP requests to Service's that declare they are able to fulfill them.
+
+All services that are tagged with `SERVICE_TAG` are defined as upstreams. Importantly, it also requires a path-service mapping in Consul's Key-Value store (more details in [Path Mapping](#path-mapping) section) to define routes.
 
 ## Path mapping
 To provide proper route settings, container expects a path-service mapping to be provided. Any endpoints that are not contained within the hierarchy _will not_ be considered as exposed to API gateway. The mapping is expected to be a set of key-value pairs in Consul's Key-Value store, located in `RESOURCES_PATH` subdirectory. For each pair, the key is the (relative) path we want to expose, and the value is the name of our service, so that nginx will assign it to our service's upstream in configuration. If considered path contains a placeholder (such as ID), this should be replaced with `{param}` keyword. Param accepts any valid path that is not already defined in path mapping, but does not match subdirectories. To reserve all addresses under a given path, there is also `<all>` parameter, which will also match all parameters and subdirectories that are not taken.
