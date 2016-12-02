@@ -8,6 +8,8 @@ RUN unzip /home/consul-template.zip -d /usr/bin
 RUN chmod +x /usr/bin/consul-template
 RUN rm /home/consul-template.zip
 
+RUN mkdir /var/log/consul-template
+
 COPY nginx.conf /etc/consul-template/nginx.conf
 COPY run.sh /home/run.sh
 
