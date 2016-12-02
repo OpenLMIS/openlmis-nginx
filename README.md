@@ -49,3 +49,9 @@ Directory in Consul's Key-Value store where the path hierarchy is located. It de
 ##### `SERVICE_TAG`
 Tag for services in Consul's registry to be considered exposed to api gateway. It defaults to `openlmis-service`.
 
+##### `NGINX_LOG`
+The directory to store Nginx log files. It defaults to `/var/log/nginx`.
+
+##### `CONSUL_TEMPLATE_LOG`
+The directory to store Consul Template log files. It defaults to `/var/log/consul-template`.
+
