@@ -12,5 +12,7 @@ RUN wget -O /home/consul-template.zip \
 COPY nginx.conf /etc/consul-template/nginx.conf
 COPY run.sh /home/run.sh
 
+VOLUME [ "/var/log/nginx", "/var/log/consul-template" ]
+
 ENTRYPOINT [ "/home/run.sh" ]
 
