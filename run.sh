@@ -18,7 +18,7 @@ export CONSUL_TEMPLATE_LOG_DIR="${CONSUL_TEMPLATE_LOG_DIR:-/var/log/consul-templ
 CONSUL_PATH="${CONSUL_HOST}:${CONSUL_PORT}"
 INPUT_FILE="/etc/consul-template/nginx.conf"
 OUTPUT_FILE="/etc/nginx/conf.d/default.conf"
-CALLBACK="/etc/init.d/nginx reload"
+CALLBACK="nginx -s reload"
 
 consul-template \
   -consul "$CONSUL_PATH" \
