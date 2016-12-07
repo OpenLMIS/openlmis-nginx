@@ -50,7 +50,7 @@ Port to contact Consul's API. It defaults to `8500`.
 Directory in Consul's Key-Value store where the path hierarchy is located. It defaults to `resources`.
 
 ##### `SERVICE_TAG`
-Tag for services in Consul's registry to be considered exposed to api gateway. It defaults to `openlmis-service`.
+When a Service register's itself, it provides a Service Tag property that indicates weather it wants the endpoints it's registering (all of them, no partials) to be exposed to the public and routed to.  The valeu that indicates this is the value that set here as `SERVICE_TAG` when this container is started.  The default is `openlmis-service`.  If this default is used, and a service registers itself with anything other than `openlmis-service`, then that service will not have it's endpoints routed to from Nginx.  This should almost always be left alone, only infrastructure services (e.g. Consul itself) use anything other than `openlmis-service`.
 
 ##### `NGINX_LOG_DIR`
 The directory to store Nginx log files. It defaults to `/var/log/nginx`.
@@ -58,3 +58,24 @@ The directory to store Nginx log files. It defaults to `/var/log/nginx`.
 ##### `CONSUL_TEMPLATE_LOG_DIR`
 The directory to store Consul Template log files. It defaults to `/var/log/consul-template`.
 
+
+## Volumes
+
+Two volumes are available which may be used by an outside container to get the logging output from Nginx as well as Consul-Template.
+
+* `/var/log/nginx` - for Nginx logs
+* `/var/log/consul-template` for Consul Template
+
+Example:
+
+```
+docker volume create --name=nginx-log
+docker run -d -v nginx-log:/var/log/nginx --name nginx openlmis/openlmis-nginx
+docker run --rm -v nginx-log:/nginx-log openlmis/dev ls /nginx-log
+```
+
+This: 
+
+1. creates a named volume `nginx-log` that nginx will write logs to
+2. runs nginx (this image) telling it to mount the named volume `nginx-log` to the nginx logging director
+2. runs a throw-away container from the development image that'll mount the named volume `nginx-log` to the path `/nginx-log` and then lists the context of that directory with `ls`.  This third step is just to demonstrate the first 2 steps are working, and instead of listing the contents, one could connect to the name volume and either show the log output to the terminal or this third step could be a container that sends the log contents to an external logging service (e.g. Scalyr)
