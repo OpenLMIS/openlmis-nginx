@@ -70,7 +70,7 @@ Example:
 
 ```
 docker volume create --name=nginx-log
-docker run -d -v nginx-log:/var/log/nginx --name nginx openlmis/openlmis-nginx
+docker run -d -v nginx-log:/var/log/nginx --name nginx openlmis/nginx
 docker run --rm -v nginx-log:/nginx-log openlmis/dev ls /nginx-log
 ```
 
