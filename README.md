@@ -36,6 +36,19 @@ And importantly:
 ## Logging
 By default, Nginx logs are stored under `/var/log/nginx` directory, and Consul Template logs can be found in `/var/log/consul-template` folder. Each of those directories is marked as VOLUME and can be mounted to, in order to retrieve logging data. Additionally, user can specify different directories for logging, using `NGINX_LOG_DIR` and `CONSUL_TEMPLATE_LOG_DIR` environment variables.
 
+### Nginx Access Log Format
+
+The log format used by Nginx's access is a standard access log format, with a few additional numbers and an indicator
+appended.  In order:
+
+1. request time - `Full request time, starting when NGINX reads the first byte from the client and ending when NGINX sends the last byte of the response body`
+2. upstream connect time - `Time spent establishing a connection with an upstream server`
+3. upstream header time - `Time between establishing a connection to an upstream server and receiving the first byte of the response header`
+4. upstream response time - `Time between establishing a connection to an upstream server and receiving the last byte of the response body`
+5. Pipe - if the request was piped
+
+More details on [Nginx performance logging](https://www.nginx.com/blog/using-nginx-logging-for-application-performance-monitoring).
+
 ## Configurable environment variables:
 ##### `VIRTUAL_HOST`
 Name of the server host. It has no default value and must be provided.
