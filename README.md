@@ -71,6 +71,9 @@ The directory to store Nginx log files. It defaults to `/var/log/nginx`.
 ##### `CONSUL_TEMPLATE_LOG_DIR`
 The directory to store Consul Template log files. It defaults to `/var/log/consul-template`.
 
+##### `CLIENT_MAX_BODY_SIZE`
+Sets the maximum allowed size of the client request body, specified in the “Content-Length” request header field. It defaults to `1m`.
+
 
 ## Volumes
 
