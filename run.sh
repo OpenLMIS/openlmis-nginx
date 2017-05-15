@@ -13,6 +13,7 @@ export SERVICE_TAG="${SERVICE_TAG:-openlmis-service}"
 export RESOURCES_PATH="${RESOURCES_PATH:-resources}"
 export NGINX_LOG_DIR="${NGINX_LOG_DIR:-/var/log/nginx}"
 export CONSUL_TEMPLATE_LOG_DIR="${CONSUL_TEMPLATE_LOG_DIR:-/var/log/consul-template}"
+export CLIENT_MAX_BODY_SIZE="${CLIENT_MAX_BODY_SIZE:-1m}"
 
 # Run consul-template in background
 CONSUL_PATH="${CONSUL_HOST}:${CONSUL_PORT}"
