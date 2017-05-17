@@ -14,6 +14,10 @@ export RESOURCES_PATH="${RESOURCES_PATH:-resources}"
 export NGINX_LOG_DIR="${NGINX_LOG_DIR:-/var/log/nginx}"
 export CONSUL_TEMPLATE_LOG_DIR="${CONSUL_TEMPLATE_LOG_DIR:-/var/log/consul-template}"
 export CLIENT_MAX_BODY_SIZE="${CLIENT_MAX_BODY_SIZE:-1m}"
+export PROXY_CONNECT_TIMEOUT="${PROXY_CONNECT_TIMEOUT:-${NGINX_TIMEOUT:-60s}}"
+export PROXY_SEND_TIMEOUT="${PROXY_SEND_TIMEOUT:-${NGINX_TIMEOUT:-60s}}"
+export PROXY_READ_TIMEOUT="${PROXY_READ_TIMEOUT:-${NGINX_TIMEOUT:-60s}}"
+export SEND_TIMEOUT="${SEND_TIMEOUT:-${NGINX_TIMEOUT:-60s}}"
 
 # Run consul-template in background
 CONSUL_PATH="${CONSUL_HOST}:${CONSUL_PORT}"
@@ -27,4 +31,3 @@ consul-template \
 
 # Run nginx
 nginx -g 'daemon off;'
-
