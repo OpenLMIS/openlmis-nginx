@@ -74,6 +74,21 @@ The directory to store Consul Template log files. It defaults to `/var/log/consu
 ##### `CLIENT_MAX_BODY_SIZE`
 Sets the maximum allowed size of the client request body, specified in the “Content-Length” request header field. It defaults to `1m`.
 
+##### `PROXY_CONNECT_TIMEOUT`
+Defines a timeout for establishing a connection with a proxied server. It defaults to `60s`.
+
+##### `PROXY_SEND_TIMEOUT`
+Sets a timeout for transmitting a request to the proxied server. It defaults to `60s`.
+
+##### `PROXY_READ_TIMEOUT`
+Defines a timeout for reading a response from the proxied server. It defaults to `60s`.
+
+##### `SEND_TIMEOUT`
+Sets a timeout for transmitting a response to the client. It defaults to `60s`.
+
+##### `NGINX_TIMEOUT`
+If you want to set the same value for `PROXY_CONNECT_TIMEOUT`, `PROXY_SEND_TIMEOUT`, `PROXY_READ_TIMEOUT` and `SEND_TIMEOUT` you can use this variable instead.
+
 
 ## Volumes
 
@@ -90,7 +105,7 @@ docker run -d -v nginx-log:/var/log/nginx --name nginx openlmis/nginx
 docker run --rm -v nginx-log:/nginx-log openlmis/dev ls /nginx-log
 ```
 
-This: 
+This:
 
 1. creates a named volume `nginx-log` that nginx will write logs to
 2. runs nginx (this image) telling it to mount the named volume `nginx-log` to the nginx logging director
