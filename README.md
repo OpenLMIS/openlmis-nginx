@@ -63,7 +63,7 @@ Port to contact Consul's API. It defaults to `8500`.
 Directory in Consul's Key-Value store where the path hierarchy is located. It defaults to `resources`.
 
 ##### `SERVICE_TAG`
-When a Service register's itself, it provides a Service Tag property that indicates weather it wants the endpoints it's registering (all of them, no partials) to be exposed to the public and routed to.  The valeu that indicates this is the value that set here as `SERVICE_TAG` when this container is started.  The default is `openlmis-service`.  If this default is used, and a service registers itself with anything other than `openlmis-service`, then that service will not have it's endpoints routed to from Nginx.  This should almost always be left alone, only infrastructure services (e.g. Consul itself) use anything other than `openlmis-service`.
+Consul can contain variety of services, to provide health checks, and other features. Not all of them, though, are meant to be exposed to public. This makes necessary to have a way to distinguish services that should be accessible through proxy, from the others. The `SERVICE_TAG` variable marks services as meant to be publicly accessible. Services without this tag will be ignored. OpenLMIS services automatically register themselves with this tag. This should almost always be left as-is, with it's default value of `openlmis-service`, unless some really complex configuration changes are necessary.
 
 ##### `NGINX_LOG_DIR`
 The directory to store Nginx log files. It defaults to `/var/log/nginx`.
