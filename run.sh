@@ -21,7 +21,7 @@ export SEND_TIMEOUT="${SEND_TIMEOUT:-${NGINX_TIMEOUT:-60s}}"
 
 # Run consul-template in background
 CONSUL_PATH="${CONSUL_HOST}:${CONSUL_PORT}"
-INPUT_FILE="/etc/consul-template/nginx.conf"
+INPUT_FILE="/etc/consul-template/openlmis.conf"
 OUTPUT_FILE="/etc/nginx/conf.d/default.conf"
 CALLBACK="nginx -s reload"
 

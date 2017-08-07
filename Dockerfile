@@ -9,10 +9,10 @@ RUN wget -O /home/consul-template.zip \
   rm /home/consul-template.zip && \
   mkdir /var/log/consul-template
 
-COPY nginx.conf /etc/consul-template/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY openlmis.conf /etc/consul-template/openlmis.conf
 COPY run.sh /home/run.sh
 
 VOLUME [ "/var/log/nginx", "/var/log/consul-template" ]
 
 ENTRYPOINT [ "/home/run.sh" ]
-

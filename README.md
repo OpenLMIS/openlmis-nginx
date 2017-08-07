@@ -33,6 +33,20 @@ And importantly:
 /users/staff - referencedata service (as placeholder matches it, and it is not explicitly defined elsewhere).  
 /users/staff/validate - auth service.  
 
+## Configuration
+
+This customized Nginx image comes with two configuration files:
+
+1. `nginx.conf` is the standard Nginx config file.  For customizing this to
+your deployment topology, simply overwrite this file by mounting your own
+as a Docker volume.  e.g.
+
+  `docker run -v /your/local/nginx.conf:/etc/nginx/nginx.conf`
+1. `openlmis.conf` is the Consul-Template generated Nginx configuration which
+needs to be included in the `nginx.conf` above.  This configuration should not
+be overridden, though it does have a number of environment variables by which
+to customize Nginx behavior.
+
 ## Logging
 By default, Nginx logs are stored under `/var/log/nginx` directory, and Consul Template logs can be found in `/var/log/consul-template` folder. Each of those directories is marked as VOLUME and can be mounted to, in order to retrieve logging data. Additionally, user can specify different directories for logging, using `NGINX_LOG_DIR` and `CONSUL_TEMPLATE_LOG_DIR` environment variables.
 
