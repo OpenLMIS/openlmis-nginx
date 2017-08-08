@@ -41,7 +41,7 @@ This customized Nginx image comes with two configuration files:
 your deployment topology, simply overwrite this file by mounting your own
 as a Docker volume.  e.g.
 
-  `docker run -v /your/local/nginx.conf:/etc/nginx/nginx.conf`
+    `docker run -v /your/local/nginx.conf:/etc/nginx/nginx.conf`
 
 1. `openlmis.conf` is the Consul-Template generated Nginx configuration which
 is included in the `nginx.conf` above (if you override `nginx.conf` be sure to
