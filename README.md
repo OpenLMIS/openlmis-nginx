@@ -44,9 +44,9 @@ as a Docker volume.  e.g.
   `docker run -v /your/local/nginx.conf:/etc/nginx/nginx.conf`
 
 1. `openlmis.conf` is the Consul-Template generated Nginx configuration which
-needs to be included in the `nginx.conf` above.  This configuration should not
-be overridden, though it does have a number of environment variables by which
-to customize Nginx behavior.
+is included in the `nginx.conf` above (if you override `nginx.conf` be sure to
+include this).  This configuration should not be overridden, though it does
+have a number of [environment variables](#env-variables) by which to customize Nginx behavior.
 
 ## Logging
 By default, Nginx logs are stored under `/var/log/nginx` directory, and Consul Template logs can be found in `/var/log/consul-template` folder. Each of those directories is marked as VOLUME and can be mounted to, in order to retrieve logging data. Additionally, user can specify different directories for logging, using `NGINX_LOG_DIR` and `CONSUL_TEMPLATE_LOG_DIR` environment variables.
@@ -64,7 +64,7 @@ appended.  In order:
 
 More details on [Nginx performance logging](https://www.nginx.com/blog/using-nginx-logging-for-application-performance-monitoring).
 
-## Configurable environment variables:
+## Configurable environment variables:<a name="env-variables"></a>
 ##### `VIRTUAL_HOST`
 Name of the server host. It has no default value and must be provided.
 
