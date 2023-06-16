@@ -19,7 +19,7 @@ COPY openlmis.conf /etc/consul-template/openlmis.conf
 COPY run.sh /home/run.sh
 
 # Add a logrotate configuration file for nginx and consul-template
-COPY logrotate.conf /etc/logrotate.d/logrotate.conf
+COPY logrotate.conf /etc/logrotate.d/nginx
 
 # Set volumes for log files
 VOLUME [ "/var/log/nginx", "/var/log/consul-template" ]
