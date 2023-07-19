@@ -25,6 +25,3 @@ COPY logrotate.conf /etc/logrotate.d/nginx
 VOLUME [ "/var/log/nginx", "/var/log/consul-template" ]
 
 ENTRYPOINT [ "/home/run.sh" ]
-
-
-
