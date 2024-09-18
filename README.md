@@ -27,11 +27,18 @@ This will result in following redirections:
 /users - referencedata service.  
 /users/manage - auth service.  
 /users/... - referencedata service.  
-/users/.../resetPassword - auth service.  
+/users/.../resetPassword - auth service.
 
 And importantly:  
 /users/staff - referencedata service (as placeholder matches it, and it is not explicitly defined elsewhere).  
 /users/staff/validate - auth service.  
+
+## General
+
+Currently the image is based on nginx version:  
+[![Docker Image Version (tag)](https://img.shields.io/docker/v/_/nginx/mainline-alpine-slim)](https://hub.docker.com/layers/library/nginx/mainline-alpine-slim/images/sha256-16cdd501b42a6501a2aec8c81915540e8b12d4f16f4784918f75bffd293d9767?context=explore)
+### Important Note:
+It is highly suggested to check the base image for vulnerabilities and update the version if necessary.
 
 ## Configuration
 
