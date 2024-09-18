@@ -1,4 +1,4 @@
-FROM nginx:1.24.0-alpine
+FROM nginx:mainline-alpine-slim
 
 RUN apk --no-cache add openssl
 
