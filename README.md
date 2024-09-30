@@ -132,3 +132,15 @@ This:
 1. creates a named volume `nginx-log` that nginx will write logs to
 2. runs nginx (this image) telling it to mount the named volume `nginx-log` to the nginx logging director
 2. runs a throw-away container from the development image that'll mount the named volume `nginx-log` to the path `/nginx-log` and then lists the context of that directory with `ls`.  This third step is just to demonstrate the first 2 steps are working, and instead of listing the contents, one could connect to the name volume and either show the log output to the terminal or this third step could be a container that sends the log contents to an external logging service (e.g. Scalyr)
+
+## Security Considerations
+
+For safe OpenLMIS deployments, it is strongly recommended to handle HTTPS at the backend level. This ensures that all communication between clients and the OpenLMIS services is encrypted and secure.
+
+To enforce HTTPS, you should configure nginx to serve traffic only over HTTPS and add the `Strict-Transport-Security` (HSTS) header. This header instructs browsers to only interact with your services over HTTPS, providing an additional layer of protection against downgrade attacks and cookie hijacking.
+
+To add HSTS, include the following header in your nginx configuration:
+```
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+
