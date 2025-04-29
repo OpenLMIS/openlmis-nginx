@@ -32,4 +32,10 @@ consul-template \
   -template "$INPUT_FILE:$OUTPUT_FILE:$CALLBACK" >> "${CONSUL_TEMPLATE_LOG_DIR}/ctmpl.log" 2>&1 &
 
 # Run nginx
-nginx -g 'daemon off;'
+nginx -g 'daemon off;' &
+
+# Infinite loop to run logrotate every 24 hours
+while true; do
+    /usr/sbin/logrotate /etc/logrotate.d/nginx
+    sleep 86400  # 24 hours
+done
