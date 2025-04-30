@@ -36,6 +36,6 @@ nginx -g 'daemon off;' &
 
 # Infinite loop to run logrotate every 24 hours
 while true; do
-    /usr/sbin/logrotate /etc/logrotate.d/nginx
+    /usr/sbin/logrotate -f /etc/logrotate.d/nginx
     sleep 86400  # 24 hours
 done
